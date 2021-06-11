@@ -1,15 +1,4 @@
-/**
- * Enterprise Application Development
- * FIAP - Faculdade de Informática e Administração Paulista
- * Professor Thiago Toshiyuki I. Yamamoto
- *
- * @class Address.java
- * @description: entidade Address no banco de dados
- * @author daniloboccomino - RM85473
- * @since Jun 7, 2021
- */
-
-package br.com.fiap.entity;
+package br.com.fiap.model;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -18,21 +7,18 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.primefaces.shaded.json.JSONPropertyIgnore;
+
 @Entity
-@Table(name = "T_ADDRESS")
-@SequenceGenerator(name = "address", sequenceName = "SQ_T_ADDRESS", allocationSize = 1)
+@Table(name = "ADDRESS")
 public class Address {
 	
 	@Id
 	@Column(name = "cd_address")
-	@GeneratedValue(generator = "address", strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
-	@OneToOne(mappedBy = "address", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-	private Hotel hotel;
 	
 	@Column(name = "ds_address")
 	private String address;
@@ -59,29 +45,12 @@ public class Address {
 		this.country = country;
 	}
 
-	public Address(Hotel hotel, String address, String neighborhood, String city, String state, String country) {
-		this.hotel = hotel;
-		this.address = address;
-		this.neighborhood = neighborhood;
-		this.city = city;
-		this.state = state;
-		this.country = country;
-	}
-
 	public int getId() {
 		return id;
 	}
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public Hotel getHotel() {
-		return hotel;
-	}
-
-	public void setHotel(Hotel hotel) {
-		this.hotel = hotel;
 	}
 
 	public String getAddress() {

@@ -1,18 +1,21 @@
-/**
- * Enterprise Application Development
- * FIAP - Faculdade de Informática e Administração Paulista
- * Professor Thiago Toshiyuki I. Yamamoto
- *
- * @class UserDAO.java
- * @description: 
- * @author daniloboccomino - RM85473
- * @since Jun 7, 2021
- */
-
 package br.com.fiap.dao;
 
-import br.com.fiap.entity.User;
+import javax.persistence.EntityManager;
 
-public interface UserDAO extends GenericDAO<User, Integer> {
+import br.com.fiap.model.User;
 
+public class UserDAO extends GenericDAO<User, Integer>{
+
+	public UserDAO(EntityManager em) {
+		super(em);
+	}
+	
+	public boolean findByEmailAndPassword(String email, String password) {
+		try {
+			em.createNamedQuery("User.byEmailAndByPassword", User.class).setParameter("email", email).setParameter("password", password).getSingleResult();
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
 }

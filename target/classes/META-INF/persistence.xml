@@ -3,23 +3,22 @@
   <persistence-unit name="traveller-persistence-unit" transaction-type="RESOURCE_LOCAL">
     <description>Forge Persistence Unit</description>
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
-    <class>br.com.fiap.entity.Address</class>
-    <class>br.com.fiap.entity.Bedroom</class>
-    <class>br.com.fiap.entity.Hotel</class>
-    <class>br.com.fiap.entity.Review</class>
-    <class>br.com.fiap.entity.User</class>
+    <class>br.com.fiap.model.Address</class>
+    <class>br.com.fiap.model.Bedroom</class>
+    <class>br.com.fiap.model.Hotel</class>
+    <class>br.com.fiap.model.Review</class>
+    <class>br.com.fiap.model.User</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
-      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
-      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/traveller" />
-      <property name="javax.persistence.jdbc.user" value="root" />
-      <property name="javax.persistence.jdbc.password" value="rootmysql" />
+      <property name="javax.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+      <property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://servidor-sqldb-traveler.database.windows.net:1433;database=traveller-sqldb" />
+      <property name="javax.persistence.jdbc.user" value="the-bugs-sqldb@servidor-sqldb-traveler" />
+      <property name="javax.persistence.jdbc.password" value="@Fiap2021" />
     
-      <property name="hibernate.hbm2ddl.auto" value="update"/>
+      <property name="hibernate.hbm2ddl.auto" value="none"/>
       <property name="hibernate.show_sql" value="true"/>
       <property name="hibernate.format_sql" value="true"/>
-      <property name="hibernate.transaction.flush_before_completion" value="true"/>
-      <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
+      <property name="hibernate.dialect" value="org.hibernate.dialect.SQLServerDialect"/>
     </properties>
   </persistence-unit>
 </persistence>

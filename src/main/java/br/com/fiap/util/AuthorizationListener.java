@@ -17,13 +17,10 @@ import javax.faces.event.PhaseEvent;
 import javax.faces.event.PhaseId;
 import javax.faces.event.PhaseListener;
 
-import br.com.fiap.entity.User;
+import br.com.fiap.model.User;
 
 public class AuthorizationListener implements PhaseListener {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Override
@@ -33,17 +30,19 @@ public class AuthorizationListener implements PhaseListener {
 		String page = context.getViewRoot().getViewId();
 		if (page.equals("/login.xhtml")) return;
 		
-		User user = (User) context.getExternalContext().getSessionMap().get("usuario");
-		if (user != null) {
-			return;
-		}
+		User user = (User) context.getExternalContext().getSessionMap().get("user");
+		if (user != null ) return;
 		
 		NavigationHandler navigationHandler = context.getApplication().getNavigationHandler();
 		navigationHandler.handleNavigation(context, "", "login?faces-redirect=true");
+		
+		
 	}
 
 	@Override
 	public void beforePhase(PhaseEvent event) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override

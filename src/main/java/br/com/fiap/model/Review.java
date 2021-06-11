@@ -1,15 +1,4 @@
-/**
- * Enterprise Application Development
- * FIAP - Faculdade de Informática e Administração Paulista
- * Professor Thiago Toshiyuki I. Yamamoto
- *
- * @class Review.java
- * @description: entidade Review no banco de dados
- * @author daniloboccomino - RM85473
- * @since Jun 7, 2021
- */
-
-package br.com.fiap.entity;
+package br.com.fiap.model;
 
 import java.util.Calendar;
 
@@ -20,21 +9,20 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.primefaces.shaded.json.JSONPropertyIgnore;
 
 @Entity
-@Table(name = "T_REVIEW")
-@SequenceGenerator(name = "review", sequenceName = "SQ_T_REVIEW", allocationSize = 1)
+@Table(name = "REVIEW")
 public class Review {
 	
 	@Id
 	@Column(name = "cd_review")
-	@GeneratedValue(generator = "review", strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	@ManyToOne
@@ -82,6 +70,7 @@ public class Review {
 		this.user = user;
 	}
 
+	@JSONPropertyIgnore()
 	public Hotel getHotel() {
 		return hotel;
 	}

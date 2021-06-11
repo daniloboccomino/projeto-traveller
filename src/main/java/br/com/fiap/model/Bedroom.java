@@ -1,15 +1,4 @@
-/**
- * Enterprise Application Development
- * FIAP - Faculdade de Informática e Administração Paulista
- * Professor Thiago Toshiyuki I. Yamamoto
- *
- * @class Bedroom.java
- * @description: entidade Bedroom no banco de dados
- * @author daniloboccomino - RM85473
- * @since Jun 7, 2021
- */
-
-package br.com.fiap.entity;
+package br.com.fiap.model;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -21,21 +10,21 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import org.primefaces.shaded.json.JSONPropertyIgnore;
 
 @NamedQueries({
 	@NamedQuery(name = "Bedroom.porPrecoMenor", query = "select b from Bedroom b where b.price <= :preco order by b.price"),
 })
 
 @Entity
-@Table(name = "T_BEDROOM")
-@SequenceGenerator(name = "bedroom", sequenceName = "SQ_T_BEDROOM", allocationSize = 1)
+@Table(name = "BEDROOM")
 public class Bedroom {
 	
 	@Id
 	@Column(name = "cd_bedroom")
-	@GeneratedValue(generator = "bedroom", strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
@@ -79,6 +68,7 @@ public class Bedroom {
 		this.id = id;
 	}
 
+	@JSONPropertyIgnore()
 	public Hotel getHotel() {
 		return hotel;
 	}

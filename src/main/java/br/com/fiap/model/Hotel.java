@@ -1,15 +1,4 @@
-/**
- * Enterprise Application Development
- * FIAP - Faculdade de Informática e Administração Paulista
- * Professor Thiago Toshiyuki I. Yamamoto
- *
- * @class Hotel.java
- * @description: entidade Hotel no banco de dados
- * @author daniloboccomino - RM85473
- * @since Jun 7, 2021
- */
-
-package br.com.fiap.entity;
+package br.com.fiap.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +14,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @NamedQueries({
@@ -34,13 +22,12 @@ import javax.persistence.Table;
 })
 
 @Entity
-@Table(name = "T_HOTEL")
-@SequenceGenerator(name = "hotel", sequenceName = "SQ_T_HOTEL", allocationSize = 1)
+@Table(name = "HOTEL")
 public class Hotel {
 	
 	@Id
 	@Column(name = "cd_hotel")
-	@GeneratedValue(generator = "hotel", strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
@@ -65,12 +52,6 @@ public class Hotel {
 	@Column(name = "ds_email")
 	private String email;
 	
-	@OneToMany(mappedBy = "hotel", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-	private List<Review> reviews;
-	
-	@OneToMany(mappedBy = "hotel", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-	private List<Bedroom> bedrooms;
-	
 	public Hotel() {}
 	
 	public Hotel(Address address, String name, String imageLink, String oficialLink, String description, String number, String email) {
@@ -83,22 +64,6 @@ public class Hotel {
 		this.email = email;
 	}
 	
-	public void addReview(Review review) {
-		if (reviews == null) {
-			reviews = new ArrayList<Review>();
-		}
-		review.setHotel(this);
-		reviews.add(review);
-	}
-	
-	public void addBedroom(Bedroom bedroom) {
-		if (bedrooms == null) {
-			bedrooms = new ArrayList<Bedroom>();
-		}
-		bedroom.setHotel(this);
-		bedrooms.add(bedroom);
-	}
-
 	public int getId() {
 		return id;
 	}
@@ -161,22 +126,6 @@ public class Hotel {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public List<Review> getReviews() {
-		return reviews;
-	}
-
-	public void setReviews(List<Review> reviews) {
-		this.reviews = reviews;
-	}
-
-	public List<Bedroom> getBedrooms() {
-		return bedrooms;
-	}
-
-	public void setBedrooms(List<Bedroom> bedrooms) {
-		this.bedrooms = bedrooms;
 	}
 	
 }

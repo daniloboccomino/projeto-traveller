@@ -1,18 +1,13 @@
-/**
- * Enterprise Application Development
- * FIAP - Faculdade de Informática e Administração Paulista
- * Professor Thiago Toshiyuki I. Yamamoto
- *
- * @class AddressDAO.java
- * @description: 
- * @author daniloboccomino - RM85473
- * @since Jun 7, 2021
- */
-
 package br.com.fiap.dao;
 
-import br.com.fiap.entity.Address;
+import javax.persistence.EntityManager;
 
-public interface AddressDAO extends GenericDAO<Address, Integer> {
+import br.com.fiap.model.Address;
+
+public class AddressDAO extends GenericDAO<Address, Integer> {
+
+	public AddressDAO(EntityManager em) {
+		super(em);
+	}
 
 }

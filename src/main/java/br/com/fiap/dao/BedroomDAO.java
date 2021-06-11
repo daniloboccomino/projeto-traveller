@@ -1,22 +1,19 @@
-/**
- * Enterprise Application Development
- * FIAP - Faculdade de Informática e Administração Paulista
- * Professor Thiago Toshiyuki I. Yamamoto
- *
- * @class BedroomDAO.java
- * @description: 
- * @author daniloboccomino - RM85473
- * @since Jun 7, 2021
- */
-
 package br.com.fiap.dao;
 
 import java.util.List;
 
-import br.com.fiap.entity.Bedroom;
+import javax.persistence.EntityManager;
 
-public interface BedroomDAO extends GenericDAO<Bedroom, Integer> {
-	
-	List<Bedroom> searchByPriceLower(double price);
+import br.com.fiap.model.Bedroom;
+
+public class BedroomDAO extends GenericDAO<Bedroom, Integer> {
+
+	public BedroomDAO(EntityManager em) {
+		super(em);
+	}
+
+	public List<Bedroom> searchByPriceLower(double price) {
+		return em.createNamedQuery("Bedroom.porPrecoMenor", Bedroom.class).setParameter("preco", price).getResultList();
+	}
 
 }
