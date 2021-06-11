@@ -72,27 +72,25 @@
 
 		<p:card class="card" style="margin-top: 2em">
 			<h:form>
-				<!-- <p:dataScroller value="#{hotelBean.hotels}" var="hotel" chunkSize="3"> -->
+				 <p:dataScroller value="#{hotelBean.hotelsByName}" var="hotel" chunkSize="3">
 					<div class="p-grid">
 					    <div class="p-col-12 p-md-6 p-lg-4">
 					    	<p:card class="p-p-5" style="border: 1px solid #eee">
 							    <f:facet name="header">
 							        <p:graphicImage name="hotel.jpg" library="img" />
 							    </f:facet>
-							    <f:facet name="title">Name #{hotel.name}</f:facet>
-							    <f:facet name="subtitle">Address #{hotel.address}</f:facet>
+							    <f:facet name="title">#{hotel.name}</f:facet>
+							    <f:facet name="subtitle">#{hotel.address}</f:facet>
 							    
 							    <h:outputText value="#{hotel.description}"/>
-							    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt
-							        quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!</p>
-							
+							    
 							    <f:facet name="footer">
 							        <p:commandButton value="View" icon="pi pi-globe"/>
 							    </f:facet>
 							</p:card>
 					    </div>
 					</div>
-				<!-- </p:dataScroller> -->
+				</p:dataScroller>
 			</h:form>
 		</p:card>
 

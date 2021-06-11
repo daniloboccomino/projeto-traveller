@@ -3,3 +3,9 @@
 body {
 	background-color: #eee;
 }
+
+.card-user-login{
+	width: 25em;
+	margin: 10px auto;	
+}
+

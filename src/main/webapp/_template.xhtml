@@ -9,9 +9,9 @@
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title><ui:insert name="title">Traveller</ui:insert></title>
-	<h:outputStylesheet name="flags.css" library="css" />
+<!-- 	<h:outputStylesheet name="flags.css" library="css" />
 	<h:outputStylesheet name="layout.css" library="css" />
-	<h:outputStylesheet name="primeflex.css" library="css" />
+	<h:outputStylesheet name="primeflex.css" library="css" /> -->
 	<h:outputStylesheet name="style.css" library="css"/>
 </h:head>
 
@@ -25,10 +25,8 @@
 				        <p:menu>
 				            <p:submenu label="Menu">
 				                <p:menuitem value="Home" outcome="index.xhtml" icon="pi pi-home"/>
-					            <p:menuitem value="Hotels" outcome="hotels.xhtml" icon="pi pi-list"/>
-					            <p:divider/>
 					            <p:menuitem value="Perfil" outcome="perfil.xhtml" icon="pi pi-user"/>
-					            <p:menuitem value="Logout" outcome="login.xhtml" icon="pi pi-sign-out"/>
+					            <p:menuitem value="Logout" action="#{userBean.logout}" icon="pi pi-sign-out"/>
 				            </p:submenu>
 				        </p:menu>
 					</h:form>

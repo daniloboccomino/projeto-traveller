@@ -18,7 +18,7 @@ public class AuthorizationListener implements PhaseListener {
 		  FacesContext context = FacesContext.getCurrentInstance();
 		  
 		  String page = context.getViewRoot().getViewId(); if
-		  (page.equals("/login.xhtml")) return;
+		  (page.equals("/login.xhtml") || page.equals("/register.xhtml")) return;
 		  
 		  User user = (User) context.getExternalContext().getSessionMap().get("user");
 		  if (user != null ) return;
