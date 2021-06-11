@@ -7,6 +7,12 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
 <ui:composition template="_template.xhtml">	
+	<ui:define name="css"> 
+		<h:outputStylesheet name="flags.css" library="css" />
+		<h:outputStylesheet name="layout.css" library="css" />
+		<h:outputStylesheet name="primeflex.css" library="css" />
+	</ui:define>
+
 	<ui:define name="content">
 	
 		<p:card  class="card">
