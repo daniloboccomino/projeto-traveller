@@ -22,9 +22,9 @@ public class UserBean {
 	public void save(){
 		try {
 			userDAO.insert(this.user);
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Usuário cadastro com sucesso"));
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Usuário cadastrado com sucesso"));
 		} catch (Exception e) {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Ocorreu um erro no cadastro de usuário!"));
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Ocorreu um erro no cadastro de usuário"));
 		}
 	}
 	
@@ -56,7 +56,7 @@ public class UserBean {
 			userDAO.update(this.user);
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Usuário atualizado com sucesso"));
 		} catch (Exception e) {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Ocorreu um erro na atualização do usuário!"));
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Ocorreu um erro na atualização do usuário"));
 		}
 	}
 
@@ -65,7 +65,7 @@ public class UserBean {
 			userDAO.delete(this.user.getId());
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Usuário removido com sucesso"));
 		} catch (Exception e) {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Ocorreu um erro na deleção do usuário!"));
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Ocorreu um erro para remover usuário"));
 		}
 	}
 	

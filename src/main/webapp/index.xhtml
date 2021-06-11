@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<ui:composition template="_template.xhtml">	
+	<ui:define name="content">
+	
+		<p:card  class="card">
+			<h:form>
+				<f:facet name="title">Filters</f:facet>
+			    <div class="p-grid" style="padding: 0">
+				    
+				    <div class="p-col">
+						<div class="p-field">
+					        <p:outputLabel value="Name" for="@next" style="margin-bottom: 14px" />
+			    			<p:inputText id="hotel-name"  style="width: 100%"/>
+			            </div>
+				    </div>
+				    
+				    <div class="p-col">
+				    	<div class="p-field">
+					        <p:outputLabel value="City" for="@next" style="margin-bottom: 14px" />
+					        <p:selectCheckboxMenu id="cities" label="Cities" style="width: 100%"
+					                                  multiple="true" filter="true" filterMatchMode="startsWith" panelStyle="width: 30rem" scrollHeight="250">
+				                <!-- <p:ajax event="itemUnselect" listener="#{checkboxView.onItemUnselect}"/> -->
+				                <p:ajax event="itemUnselect" listener="#{checkboxView.onItemUnselect}"/>
+				                <f:selectItems value="#{checkboxView.cities}"/>
+				            </p:selectCheckboxMenu>
+			            </div>
+					</div>
+				    
+				    <div class="p-col-2">
+				    	<div class="p-field">
+				            <p:outputLabel value="Min Price" for="@next"/>
+					        <h:panelGrid columns="1" style="margin-bottom: 10px">
+					            <!-- <p:inputNumber id="price" value="#{sliderView.number3}" symbol="R$" valueChangeListener="#{sliderView.onInputChanged}"> -->
+					            <p:inputNumber id="minPrice" value="50" symbol="R$" valueChangeListener="50">
+					                <p:ajax process="@this"/>
+					            </p:inputNumber>
+					            <p:slider for="minPrice"/>
+					        </h:panelGrid>
+			            </div>
+					</div>
+				    
+				    <div class="p-col-2">
+				    	<div class="p-field">
+				            <p:outputLabel value="Max Price" for="@next"/>
+					        <h:panelGrid columns="1" style="margin-bottom: 10px">
+					            <!-- <p:inputNumber id="price" value="#{sliderView.number3}" symbol="R$" valueChangeListener="#{sliderView.onInputChanged}"> -->
+					            <p:inputNumber id="maxPrice" value="400" symbol="R$" valueChangeListener="400">
+					                <p:ajax process="@this"/>
+					            </p:inputNumber>
+					            <p:slider for="maxPrice"/>
+					        </h:panelGrid>
+			            </div>
+					</div>
+					
+					<div class="p-col-1" style="align-self: center; text-align: end;">
+						<div class="p-field">
+			            	<p:commandButton type="button" icon="pi pi-search" />
+			            </div>
+					</div>
+					
+				</div>
+			</h:form>
+		</p:card>
+		
+
+		<p:card class="card" style="margin-top: 2em">
+			<h:form>
+				<!-- <p:dataScroller value="#{hotelBean.hotels}" var="hotel" chunkSize="3"> -->
+					<div class="p-grid">
+					    <div class="p-col-12 p-md-6 p-lg-4">
+					    	<p:card class="p-p-5" style="border: 1px solid #eee">
+							    <f:facet name="header">
+							        <p:graphicImage name="hotel.jpg" library="img" />
+							    </f:facet>
+							    <f:facet name="title">Name #{hotel.name}</f:facet>
+							    <f:facet name="subtitle">Address #{hotel.address}</f:facet>
+							    
+							    <h:outputText value="#{hotel.description}"/>
+							    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt
+							        quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!</p>
+							
+							    <f:facet name="footer">
+							        <p:commandButton value="View" icon="pi pi-globe"/>
+							    </f:facet>
+							</p:card>
+					    </div>
+					</div>
+				<!-- </p:dataScroller> -->
+			</h:form>
+		</p:card>
+
+	</ui:define>
+</ui:composition>
+
+</html>

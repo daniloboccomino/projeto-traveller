@@ -27,21 +27,21 @@ public class HotelBean {
 	public void save(){
 		try {
 			hotelDAO.insert(this.hotel);
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Hotel cadastro com sucesso"));
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Hotel cadastrado com sucesso"));
 		} catch (Exception e) {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Ocorreu um erro no cadastro de usuário!"));
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Ocorreu um erro no cadastro do hotel"));
 		}
 	}
 	
 	public List<Hotel> getHotelsByName(){
-		if (hotel.getName() == null || hotel.getName().isBlank()){
+		if (hotel.getName() == null || hotel.getName().isEmpty()){
 			return hotelDAO.searchByName("");
 		}
 		return hotelDAO.searchByName(hotel.getName());
 	}
 	
 	public List<Hotel> getHotelsByCity(){
-		if (address.getCity() == null || address.getCity().isBlank()){
+		if (address.getCity() == null || address.getCity().isEmpty()){
 			return hotelDAO.searchByName("");
 		}
 		return hotelDAO.searchByCity(hotel.getAddress().getCity());

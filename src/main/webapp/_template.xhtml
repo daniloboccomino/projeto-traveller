@@ -5,33 +5,51 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title><ui:insert name="title">Traveller</ui:insert></title>
-	<h:outputStylesheet name="primeflex.min.css" library="css" />
+	<h:outputStylesheet name="flags.css" library="css" />
+	<h:outputStylesheet name="layout.css" library="css" />
 	<h:outputStylesheet name="primeflex.css" library="css" />
-	<h:outputStylesheet name="style.css" library="css" />
+	<h:outputStylesheet name="style.css" library="css"/>
 </h:head>
 
 <body>
-	<div class="card">
-		<ui:insert name="menu">
-		    <p:tabMenu activeIndex="#{param.i}">
-		        <p:menuitem value="Hotels" outcome="hotels.xhtml" icon="pi pi-fw pi-home">
-		            <f:param name="i" value="0"/>
-		        </p:menuitem>
-		    </p:tabMenu>
-	    </ui:insert>
-	</div>
-
-	<div id="content">
-		<ui:insert name="content">
-		</ui:insert>
-	</div>
-
-	<div id="footer">
-		<ui:insert name="footer">
-		</ui:insert>
+	<div class="p-grid">
+		<div id="menu" class="p-p-5">
+			<ui:insert name="menu">
+			
+				<div class="card">
+					<h:form>
+				        <p:menu>
+				            <p:submenu label="Menu">
+				                <p:menuitem value="Home" outcome="index.xhtml" icon="pi pi-home"/>
+					            <p:menuitem value="Hotels" outcome="hotels.xhtml" icon="pi pi-list"/>
+					            <p:divider/>
+					            <p:menuitem value="Perfil" outcome="perfil.xhtml" icon="pi pi-user"/>
+					            <p:menuitem value="Logout" outcome="login.xhtml" icon="pi pi-sign-out"/>
+				            </p:submenu>
+				        </p:menu>
+					</h:form>
+				</div>	
+				
+			</ui:insert>	
+		</div>
+		
+		<div id="container" class="p-p-5 p-col">	
+	
+			<div id="content" >
+				<ui:insert name="content">
+				</ui:insert>
+			</div>
+		
+			<div id="footer">
+				<ui:insert name="footer">
+				</ui:insert>
+			</div>
+			
+		</div>
 	</div>
 
 </body>
