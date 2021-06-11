@@ -14,11 +14,23 @@ import br.com.fiap.util.EntityManagerFacade;
 @RequestScoped
 public class BedroomBean {
 
+	private Bedroom bedroom = new Bedroom();
+	
 	private EntityManager manager = new EntityManagerFacade().getEntityManager();
 	
 	private BedroomDAO bedroomDAO = new BedroomDAO(manager);
 	
-	public List<Bedroom> searchByPriceLower(double price){
-		return bedroomDAO.searchByPriceLower(price);
+	public List<Bedroom> getBedroomsByPriceLower(){
+		return bedroomDAO.searchByPriceLower(bedroom.getPrice());
 	}
+	
+	public Bedroom getBedroom() {
+		return bedroom;
+	}
+	
+	public void setBedroom(Bedroom bedroom) {
+		this.bedroom = bedroom;
+	}
+	
+	
 }
