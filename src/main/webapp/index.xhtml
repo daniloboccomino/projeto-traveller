@@ -22,14 +22,14 @@
 				    
 				     <div class="p-col p-mr-3">
                 		<div class="ui-inputgroup">
-                    		<p:inputText id="hotelName" value="#{hotelBean.hotel.name}"  placeholder="Hotel Name"/>
+                    		<p:inputText id="hotelName" value="#{hotelBean.hotel.name}"  placeholder="Hotel Name" disabled="true"/>
                     		<p:commandButton icon="pi pi-search" action="#{hotelBean.hotelsByName}" styleClass="ui-button-info"/>
                 		</div>
             		</div>
             		
             		 <div class="p-col p-ml-3">
                 		<div class="ui-inputgroup">
-                    		<p:inputText id="hotelCity" value="#{hotelBean.address.city}" placeholder="City Name"/>
+                    		<p:inputText id="hotelCity" value="#{hotelBean.address.city}" placeholder="City Name" disabled="true"/>
                     		<p:commandButton icon="pi pi-search" action="#{hotelBean.hotelsByCity}" styleClass="ui-button-info"/>
                 		</div>
             		</div>
