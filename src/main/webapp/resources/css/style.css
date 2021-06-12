@@ -26,3 +26,7 @@ body .ui-datascroller .ui-datascroller-content {
 	width: 33.33%;
 	padding: 1em;
 }
+
+.input-password {
+	width: 32em;
+}
