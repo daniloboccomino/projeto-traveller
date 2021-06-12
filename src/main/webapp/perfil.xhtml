@@ -37,8 +37,14 @@
 					<div class="p-field p-grid">
 						<label for="birthdate" class="p-col-12 p-mb-1 p-md-1 p-mb-md-0">Birth Date</label>
 						<div class="p-col-12 p-md-11">
-							<p:calendar id="birthDate" value="#{usuarioBean.usuario.birthDate}" showOn="button" mask="mm/dd/yyyy" required="true">
-								<f:ajax event="blur" render="messages" />
+							<p:calendar 
+								id="birthdate" 
+								value="#{userBean.user.birthdate}" 
+								required="true"
+								showOn="button"
+								mask="dd/MM/yyyy"
+							>
+								<f:ajax event="blur" render="messages"  />
 							</p:calendar>
 						</div>
 					</div>
@@ -70,7 +76,7 @@
 				<div class="p-grid">
 					<div class="p-col">
 						<p:commandButton icon="pi pi-times" value="Cancel" styleClass="ui-button-secondary" />
-						<p:commandButton icon="pi pi-check" value="Save" action="#{userBean.save}" style="margin-left: 1em">
+						<p:commandButton icon="pi pi-check" value="Save" action="#{userBean.update}" style="margin-left: 1em">
 							<f:ajax execute="@form" render="messages" />
 						</p:commandButton>
 			        </div>

@@ -33,9 +33,9 @@ public class UserBean {
 	
 	public String login() {
 		FacesContext context = FacesContext.getCurrentInstance();
-		boolean exist =  userDAO.findByEmailAndPassword(user.getEmail(), user.getPassword());
+		User user =  userDAO.findByEmailAndPassword(this.user.getEmail(), this.user.getPassword());
 		
-		if (exist) {
+		if (user != null) {
 			context.getExternalContext().getSessionMap().put("user", user);
 			return "index?faces-redirect=true";
 		}

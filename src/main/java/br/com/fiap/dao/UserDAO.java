@@ -10,12 +10,11 @@ public class UserDAO extends GenericDAO<User, Integer>{
 		super(em);
 	}
 	
-	public boolean findByEmailAndPassword(String email, String password) {
+	public User findByEmailAndPassword(String email, String password) {
 		try {
-			em.createNamedQuery("User.byEmailAndByPassword", User.class).setParameter("email", email).setParameter("password", password).getSingleResult();
+			return em.createNamedQuery("User.byEmailAndByPassword", User.class).setParameter("email", email).setParameter("password", password).getSingleResult();
 		} catch (Exception e) {
-			return false;
+			return null;
 		}
-		return true;
 	}
 }
