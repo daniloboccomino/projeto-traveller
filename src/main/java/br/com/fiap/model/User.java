@@ -1,10 +1,6 @@
 package br.com.fiap.model;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-
-import javax.persistence.CascadeType;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,12 +8,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
-import org.hibernate.annotations.CreationTimestamp;
 
 @NamedQueries({
 	@NamedQuery(name = "User.byEmailAndByPassword", query = "SELECT u FROM User u WHERE u.email=:email AND u.password=:password")
@@ -41,29 +34,17 @@ public class User {
 	@Column(name = "ds_password")
 	private String password;
 	
-	@CreationTimestamp
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	@Column(name = "dt_birth_date")
-	private Calendar birthdate;
-	
-	@OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
-	private List<Review> reviews;
-	
+	private Date birthdate;
+
 	public User() {}
 
-	public User(String name, String email, String password, Calendar birthdate) {
+	public User(String name, String email, String password, Date birthdate) {
 		this.name = name;
 		this.email = email;
 		this.password = password;
 		this.birthdate = birthdate;
-	}
-	
-	public void addReview(Review review) {
-		if (reviews == null) {
-			reviews = new ArrayList<Review>();
-		}
-		review.setUser(this);
-		reviews.add(review);
 	}
 
 	public int getId() {
@@ -98,20 +79,12 @@ public class User {
 		this.password = password;
 	}
 
-	public Calendar getBirthdate() {
+	public Date getBirthdate() {
 		return birthdate;
 	}
 
-	public void setBirthdate(Calendar birthdate) {
+	public void setBirthdate(Date birthdate) {
 		this.birthdate = birthdate;
-	}
-
-	public List<Review> getReviews() {
-		return reviews;
-	}
-
-	public void setReviews(List<Review> reviews) {
-		this.reviews = reviews;
 	}
 	
 }

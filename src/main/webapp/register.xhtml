@@ -13,7 +13,68 @@
 	</ui:define>
 
 	<ui:define name="content">
-	
+		<p:messages id="messages"><p:autoUpdate /></p:messages>
+
+		<p:card class="card-user-login">
+			<f:facet name="title">
+	        	New User
+	    	</f:facet>
+			<h:form>
+				<div class="ui-fluid p-formgrid p-grid">
+				
+					<div class="p-field p-grid">
+						<label for="name" class="p-col-fixed" style="width: 100px">Name</label>
+						<div class="p-col">
+							<p:inputText id="name" value="#{userBean.user.name}" required="true">
+								<f:ajax event="blur" render="messages"  />
+							</p:inputText>
+						</div>
+					</div>
+
+					<div class="p-field p-grid">
+						<label for="birthdate" class="p-col-fixed" style="width: 100px">Birth date</label>
+						<div class="p-col">
+							<p:calendar 
+								id="birthdate" 
+								value="#{userBean.user.birthdate}" 
+								required="true"
+								showOn="button"
+								mask="dd/MM/yyyy"
+							>
+								<f:ajax event="blur" render="messages"  />
+							</p:calendar>
+						</div>
+					</div>
+					
+					<div class="p-field p-grid">
+						<label for="email" class="p-col-fixed" style="width: 100px">E-mail</label>
+						<div class="p-col">
+							<p:inputText id="email" value="#{userBean.user.email}" required="true" validatorMessage="E-mail inválido">
+								<f:validateRegex pattern="([^.@]+)(\.[^.@]+)*@([^.@]+\.)+([^.@]+)" />
+								<f:ajax event="blur" render="messages"  />
+							</p:inputText>
+						</div>
+					</div>
+
+					<div class="p-field p-grid">
+						<label for="password" class="p-col-fixed" style="width: 100px">Password</label>
+						<div class="p-col">
+							<p:password id="password" value="#{userBean.user.password}" required="true" feedback="true" toggleMask="true">
+								<f:ajax event="blur" render="messages"  />
+							</p:password>
+						</div>
+					</div>
+
+
+				</div>
+			</h:form>
+
+			<f:facet name="footer">
+				<p:commandButton icon="pi pi-check" value="Save" action="#{userBean.save}">
+					<f:ajax execute="@form" render="messages"  />
+				</p:commandButton>
+			</f:facet>
+		</p:card>
 	</ui:define>
 
 </ui:composition>

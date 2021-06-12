@@ -19,13 +19,16 @@ public class UserBean {
 	
 	private UserDAO userDAO = new UserDAO(manager);
 	
-	public void save(){
+	public String save(){
+		FacesContext context = FacesContext.getCurrentInstance();
 		try {
 			userDAO.insert(this.user);
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Usuário cadastrado com sucesso"));
+			context.getExternalContext().getFlash().setKeepMessages(true);
+			context.addMessage(null, new FacesMessage("Usuário cadastrado com sucesso"));
 		} catch (Exception e) {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Ocorreu um erro no cadastro de usuário"));
+			context.addMessage(null, new FacesMessage("Ocorreu um erro no cadastro de usuário"));
 		}
+		return "login?faces-redirect=true";
 	}
 	
 	public String login() {
