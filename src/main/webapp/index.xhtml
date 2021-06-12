@@ -79,14 +79,16 @@
 		<p:card class="card" style="margin-top: 2em">
 			<h:form>
 				<p:dataScroller value="#{hotelBean.hotelsByName}" var="hotel" chunkSize="3">
-			    	<p:card class="p-p-5" style="border: 1px solid #eee; min-height: 520px">
+			    	<p:card class="p-p-5" style="border: 1px solid #eee">
 					    <f:facet name="header">
 					        <p:graphicImage name="hotel.jpg" library="img" />
 					    </f:facet>
 					    <f:facet name="title">#{hotel.name}</f:facet>
 					    <f:facet name="subtitle">#{hotel.address}</f:facet>
 					    
-					    <h:outputText value="#{hotel.description}"/>
+					    <div style="min-height: 60px">
+					    	<h:outputText value="#{hotel.description}"/>
+					    </div>
 					    
 					    <f:facet name="footer">
 					        <p:commandButton value="View" icon="pi pi-globe"/>
