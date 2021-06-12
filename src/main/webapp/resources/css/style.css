@@ -4,8 +4,25 @@ body {
 	background-color: #eee;
 }
 
-.card-user-login{
+.card-user-login {
 	width: 25em;
 	margin: 10px auto;	
 }
 
+body .ui-datascroller .ui-datascroller-content {
+	border: none;
+	padding: 0;
+}
+
+.ui-datascroller .ui-datascroller-content  ul {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -0.5rem;
+    margin-left: -0.5rem;
+    margin-top: -0.5rem;
+}
+
+.ui-datascroller .ui-datascroller-content  ul li {
+	width: 33.33%;
+	padding: 1em;
+}

@@ -78,24 +78,20 @@
 
 		<p:card class="card" style="margin-top: 2em">
 			<h:form>
-				 <p:dataScroller value="#{hotelBean.hotelsByName}" var="hotel" chunkSize="3">
-					<div class="p-grid">
-					    <div class="p-col-12 p-md-6 p-lg-4">
-					    	<p:card class="p-p-5" style="border: 1px solid #eee">
-							    <f:facet name="header">
-							        <p:graphicImage name="hotel.jpg" library="img" />
-							    </f:facet>
-							    <f:facet name="title">#{hotel.name}</f:facet>
-							    <f:facet name="subtitle">#{hotel.address}</f:facet>
-							    
-							    <h:outputText value="#{hotel.description}"/>
-							    
-							    <f:facet name="footer">
-							        <p:commandButton value="View" icon="pi pi-globe"/>
-							    </f:facet>
-							</p:card>
-					    </div>
-					</div>
+				<p:dataScroller value="#{hotelBean.hotelsByName}" var="hotel" chunkSize="3">
+			    	<p:card class="p-p-5" style="border: 1px solid #eee; min-height: 520px">
+					    <f:facet name="header">
+					        <p:graphicImage name="hotel.jpg" library="img" />
+					    </f:facet>
+					    <f:facet name="title">#{hotel.name}</f:facet>
+					    <f:facet name="subtitle">#{hotel.address}</f:facet>
+					    
+					    <h:outputText value="#{hotel.description}"/>
+					    
+					    <f:facet name="footer">
+					        <p:commandButton value="View" icon="pi pi-globe"/>
+					    </f:facet>
+					</p:card>
 				</p:dataScroller>
 			</h:form>
 		</p:card>
