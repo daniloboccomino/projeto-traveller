@@ -55,7 +55,10 @@ public class UserBean {
 	}
 	
 	public void update(){
+		FacesContext context = FacesContext.getCurrentInstance();
 		try {
+			User user = (User) context.getExternalContext().getSessionMap().get("user");
+			this.user.setId(user.getId());
 			userDAO.update(this.user);
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Usuário atualizado com sucesso"));
 		} catch (Exception e) {
@@ -63,13 +66,17 @@ public class UserBean {
 		}
 	}
 
-	public void delete(){
+	public String delete(){
+		FacesContext context = FacesContext.getCurrentInstance();
 		try {
-			userDAO.delete(this.user.getId());
+			User user = (User) context.getExternalContext().getSessionMap().get("user");
+			userDAO.delete(user.getId());
+			context.getExternalContext().getFlash().setKeepMessages(true);
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Usuário removido com sucesso"));
 		} catch (Exception e) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Ocorreu um erro para remover usuário"));
 		}
+		return logout();
 	}
 	
 	public User getUser() {

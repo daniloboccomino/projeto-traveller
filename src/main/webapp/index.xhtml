@@ -16,75 +16,37 @@
 	<ui:define name="content">
 	
 		<p:card  class="card">
+			<f:facet name="title">Filters</f:facet>
 			<h:form>
-				<f:facet name="title">Filters</f:facet>
-			    <div class="p-grid" style="padding: 0">
+			    <div class="p-grid ui-fluid" style="padding: 0">
 				    
-				    <div class="p-col">
-						<div class="p-field">
-					        <p:outputLabel value="Name" for="@next" style="margin-bottom: 14px" />
-			    			<p:inputText id="hotel-name"  style="width: 100%"/>
-			            </div>
-				    </div>
-				    
-				    <div class="p-col">
-				    	<div class="p-field">
-					        <p:outputLabel value="City" for="@next" style="margin-bottom: 14px" />
-					        <p:selectCheckboxMenu id="cities" label="Cities" style="width: 100%"
-					                                  multiple="true" filter="true" filterMatchMode="startsWith" panelStyle="width: 30rem" scrollHeight="250">
-				                <!-- <p:ajax event="itemUnselect" listener="#{checkboxView.onItemUnselect}"/> -->
-				                <p:ajax event="itemUnselect" listener="#{checkboxView.onItemUnselect}"/>
-				                <f:selectItems value="#{checkboxView.cities}"/>
-				            </p:selectCheckboxMenu>
-			            </div>
-					</div>
-				    
-				    <div class="p-col-2">
-				    	<div class="p-field">
-				            <p:outputLabel value="Min Price" for="@next"/>
-					        <h:panelGrid columns="1" style="margin-bottom: 10px">
-					            <!-- <p:inputNumber id="price" value="#{sliderView.number3}" symbol="R$" valueChangeListener="#{sliderView.onInputChanged}"> -->
-					            <p:inputNumber id="minPrice" value="50" symbol="R$" valueChangeListener="50">
-					                <p:ajax process="@this"/>
-					            </p:inputNumber>
-					            <p:slider for="minPrice"/>
-					        </h:panelGrid>
-			            </div>
-					</div>
-				    
-				    <div class="p-col-2">
-				    	<div class="p-field">
-				            <p:outputLabel value="Max Price" for="@next"/>
-					        <h:panelGrid columns="1" style="margin-bottom: 10px">
-					            <!-- <p:inputNumber id="price" value="#{sliderView.number3}" symbol="R$" valueChangeListener="#{sliderView.onInputChanged}"> -->
-					            <p:inputNumber id="maxPrice" value="400" symbol="R$" valueChangeListener="400">
-					                <p:ajax process="@this"/>
-					            </p:inputNumber>
-					            <p:slider for="maxPrice"/>
-					        </h:panelGrid>
-			            </div>
-					</div>
-					
-					<div class="p-col-1" style="align-self: center; text-align: end;">
-						<div class="p-field">
-			            	<p:commandButton type="button" icon="pi pi-search" />
-			            </div>
-					</div>
+				     <div class="p-col p-mr-3">
+                		<div class="ui-inputgroup">
+                    		<p:inputText id="hotelName" value="#{hotelBean.hotel.name}"  placeholder="Hotel Name"/>
+                    		<p:commandButton icon="pi pi-search" action="#{hotelBean.hotelsByName}" styleClass="ui-button-info"/>
+                		</div>
+            		</div>
+            		
+            		 <div class="p-col p-ml-3">
+                		<div class="ui-inputgroup">
+                    		<p:inputText id="hotelCity" value="#{hotelBean.address.city}" placeholder="City Name"/>
+                    		<p:commandButton icon="pi pi-search" action="#{hotelBean.hotelsByCity}" styleClass="ui-button-info"/>
+                		</div>
+            		</div>
 					
 				</div>
 			</h:form>
 		</p:card>
 		
-
 		<p:card class="card" style="margin-top: 2em">
 			<h:form>
-				<p:dataScroller value="#{hotelBean.hotelsByName}" var="hotel" chunkSize="3">
+				<p:dataScroller value="#{hotelBean.hotels}"  var="hotel" chunkSize="6">
 			    	<p:card class="p-p-5" style="border: 1px solid #eee">
 					    <f:facet name="header">
-					        <p:graphicImage name="hotel.jpg" library="img" />
+					    	<p:graphicImage url="#{hotel.imageLink}" height="260px" />
 					    </f:facet>
 					    <f:facet name="title">#{hotel.name}</f:facet>
-					    <f:facet name="subtitle">#{hotel.address}</f:facet>
+					    <f:facet name="subtitle">#{hotel.address.address} - #{hotel.address.neighborhood}, #{hotel.address.city} - #{hotel.address.state}, #{hotel.address.country}</f:facet>
 					    
 					    <div style="min-height: 60px">
 					    	<h:outputText value="#{hotel.description}"/>

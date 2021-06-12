@@ -5,6 +5,7 @@ import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ValueChangeEvent;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 
@@ -24,6 +25,8 @@ public class HotelBean {
 	
 	private HotelDAO hotelDAO = new HotelDAO(manager);
 	
+	private List<Hotel> hotels = hotelDAO.searchByName("");
+	
 	public void save(){
 		try {
 			hotelDAO.insert(this.hotel);
@@ -33,18 +36,18 @@ public class HotelBean {
 		}
 	}
 	
-	public List<Hotel> getHotelsByName(){
+	public void hotelsByName(){
 		if (hotel.getName() == null || hotel.getName().isEmpty()){
-			return hotelDAO.searchByName("");
+			hotels = hotelDAO.searchByName("");
 		}
-		return hotelDAO.searchByName(hotel.getName());
+		hotels = hotelDAO.searchByName(hotel.getName());
 	}
 	
-	public List<Hotel> getHotelsByCity(){
+	public void hotelsByCity(){
 		if (address.getCity() == null || address.getCity().isEmpty()){
-			return hotelDAO.searchByName("");
+			hotels = hotelDAO.searchByName("");
 		}
-		return hotelDAO.searchByCity(hotel.getAddress().getCity());
+		hotels = hotelDAO.searchByCity(hotel.getAddress().getCity());
 	}
 	
 	public Hotel getHotel() {
@@ -61,6 +64,14 @@ public class HotelBean {
 
 	public void setAddress(Address address) {
 		this.address = address;
+	}
+	
+	public List<Hotel> getHotels() {
+		return hotels;
+	}
+
+	public void setHotels(List<Hotel> hotels) {
+		this.hotels = hotels;
 	}
 	
 }
